@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #03170e;
+    --text-primary: #ecfdf5;
+  }
+
+  html.light {
+    --bg-primary: #f0fdf4;
+    --text-primary: #064e3b;
+  }
+
+  html, body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  /* Seamless custom 3D cursor without native duplicate */
+  @media (pointer: fine) {
+    html, body, button, a, input, select, textarea, [role="button"], .cursor-pointer {
+      cursor: none !important;
+    }
+  }
+
+  /* Custom modern green scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020f09;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #059669;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
+  }
+}
+
+@keyframes earth-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-earth-spin {
+  animation: earth-spin 8s linear infinite;
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(4, 30, 18, 0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+  }
+
+  .light .glass-panel {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg, rgba(4, 32, 20, 0.85) 0%, rgba(6, 44, 28, 0.55) 100%);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(52, 211, 153, 0.7);
+    box-shadow: 0 10px 30px -8px rgba(16, 185, 129, 0.45);
+  }
+
+  .glass-button {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.25) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(52, 211, 153, 0.5);
+    transition: all 0.25s ease;
+  }
+
+  .glass-button:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(52, 211, 153, 0.4) 100%);
+    border-color: rgba(52, 211, 153, 0.9);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.55);
+  }
+
+  .cyber-gradient-text {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 45%, #6ee7b7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cyber-gradient-text-alt {
+    background: linear-gradient(135deg, #6ee7b7 0%, #34d399 50%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glow-border-emerald {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+    border-color: rgba(52, 211, 153, 0.7);
+  }
+
+  .glow-border-cyan {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.45);
+    border-color: rgba(110, 231, 183, 0.7);
+  }
+
+  .cyber-grid-bg {
+    background-image: 
+      linear-gradient(rgba(52, 211, 153, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(52, 211, 153, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .scanner-line {
+    background: linear-gradient(180deg, transparent, rgba(52, 211, 153, 0.9), rgba(110, 231, 183, 0.95), transparent);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.9);
+  }
+}
+
+/* Leaflet dark custom theme tweaks */
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background: #02130b !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(4, 30, 18, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #ecfdf5 !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(4, 30, 18, 0.95) !important;
+}
+
+/* Pulsing Leaflet custom marker classes */
+.custom-pulsing-marker {
+  position: relative;
+}
+
+.marker-pulse {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.marker-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
